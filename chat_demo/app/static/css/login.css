@@ -24,7 +24,6 @@ body {
 @media (max-width: 750px) {
     img {
         border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
         border-top-right-radius: 30px;
     }
 }
