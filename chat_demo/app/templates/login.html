@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"/>
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="Form mx-5 my-4">
+        <div class="container">
+            <div class="row no-gutters " style="margin-top: 200px;">
+                <div class="col-lg-5">
+                    <img src="../static/img/cats.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1 class="font-weight-bold py-3">陈皮聊天室</h1>
+                    <h4>进来唠会呗</h4>
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.username(class="form-control mt-4 py-2",placeholder="Username") }}
+                            </div>
+                        </div>
+                        <div>
+                            {% for error in form.username.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.password(class="form-control mt-4 py-2", placeholder="Password") }}
+                            </div>
+                        </div>
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.submit(class="btn-submit mt-4 mb-4") }}
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+                        </div>
+                        <div class="col-lg-7">
+                            <p>莫得账号？<a href="{{ url_for('register') }}">点击上车</a></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

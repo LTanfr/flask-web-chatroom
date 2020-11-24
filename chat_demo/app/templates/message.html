@@ -1,0 +1,11 @@
+<div class="received-chats">
+    <div class="received-img">
+        <img src="{{ message.author.gravatar }}">
+    </div>
+    <div class="received-msg">
+        <div class="received-msg-inbox">
+            <span class="time-received">{{ message.author.username }}  {{ moment(message.timestamp).format('lll') }}</span>
+            <p>{{ message.body }}</p>
+        </div>
+    </div>
+</div>

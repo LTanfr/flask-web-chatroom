@@ -1,0 +1,48 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        var socket = io.connect('http://127.0.0.1:5000')
+
+        socket.on('connect', function() {
+            socket.send("USer has connected!");
+        });
+
+        socket.on('message', function(msg) {
+           $("#messages").append('<li>' + msg + '</li>')
+        });
+
+        $('#send_button').on('click', function() {
+            socket.send($("#myMessage").val())
+            $("#myMessage").val('');
+        })
+
+    });
+    </script>
+
+</head>
+
+<body>
+    {% with info = get_flashed_messages() %}{% endwith %}
+
+    <h1>Hi, {{ current_user.username }}</h1>
+    <img src="{{ current_user.gravatar }}">
+
+
+    <ul id="messages">
+        {% for msg in messages %}
+            <li>{{ msg }}</li>
+        {% endfor %}
+    </ul>
+    <input type="text" id="myMessage">
+    <button id="send_button">Send</button>
+</body>
+</html>
+
+
+
+
