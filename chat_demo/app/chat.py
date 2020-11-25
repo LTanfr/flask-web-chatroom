@@ -15,7 +15,8 @@ def handle_new_message(msg):
     db.session.commit()
     emit('new message',
          {
-             'message_html': render_template("message.html", message=message),
+             'message_x': render_template("message_x.html", message=message),
+             'message_y': render_template("message_y.html", message=message),
              'username': msg['username']
          },
          broadcast=True)

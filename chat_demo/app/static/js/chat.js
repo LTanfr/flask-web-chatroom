@@ -3,6 +3,7 @@ $(document).ready(function() {
     var socket = io();
 
     const ENTER_KEY = 13;
+    const username = $("#username")[0].innerText;
 
     function scrollToBottom() {
         let $messages = $("#messages");
@@ -41,8 +42,13 @@ $(document).ready(function() {
     $('#messages').scroll(load_messages);
 
     socket.on('new message', function (data) {
-        if (data.username)
-        $("#messages").append(data.message_html);
+        if (data.username) {
+            if(data.username !== username) {
+                $("#messages").append(data.message_x);
+            }else {
+                $("#messages").append(data.message_y);
+            }
+        }
         flask_moment_render_all();
         scrollToBottom();
     })
@@ -51,7 +57,6 @@ $(document).ready(function() {
         $('#user-count').html(data.count)
     })
 
-    var username = $("#username")[0].innerText;
     function new_message(e) {
         let input = $("#my_message").val().trim();
         let message = {

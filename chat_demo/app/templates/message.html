@@ -1,5 +1,5 @@
 {#收到消息呈现在左边#}
-{% if message.author != current_user %}
+{% if message.author.username != current_user %}
 <div class="col-12">
     <div class="col-md-5 received-message">
         <div class="received-img">
@@ -18,8 +18,9 @@
         <span>{{ moment(message.timestamp).format('lll') }}</span>
     </div>
 </div>
+{% endif %}
 
-{% else %}
+{% if message.author == current_user%}
 {#发出消息呈现在右边#}
 <div class="col-12">
     <div class="col-md-5 outgoing-message">

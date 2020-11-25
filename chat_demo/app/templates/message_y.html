@@ -1,0 +1,19 @@
+{#右#}
+<div class="col-12">
+    <div class="col-md-5 outgoing-message">
+        <div class="outgoing-msg">
+            <div class="outgoing-msg-inbox">
+                    <span class="outgoing-username">
+                      {{ message.author.username }}
+                    </span>
+                <p>{{ message.body }}</p>
+            </div>
+        </div>
+        <div class="received-img">
+            <img class="profile-image" src="{{ message.author.gravatar }}">
+        </div>
+    </div>
+    <div class="received-time">
+        <span>{{ moment(message.timestamp).format('lll') }}</span>
+    </div>
+</div>

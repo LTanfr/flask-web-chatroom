@@ -5,6 +5,10 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+p {
+    word-break:break-all;
+}
+
 .container {
     margin: 120px auto;
     background: #fff;
