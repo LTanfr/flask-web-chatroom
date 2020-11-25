@@ -14,7 +14,6 @@ $(document).ready(function() {
     });
 
 
-
     var page = 1;
     function load_messages() {
         let $messages = $('#messages');
@@ -42,6 +41,7 @@ $(document).ready(function() {
     $('#messages').scroll(load_messages);
 
     socket.on('new message', function (data) {
+        if (data.username)
         $("#messages").append(data.message_html);
         flask_moment_render_all();
         scrollToBottom();
@@ -51,25 +51,32 @@ $(document).ready(function() {
         $('#user-count').html(data.count)
     })
 
+    var username = $("#username")[0].innerText;
     function new_message(e) {
-        let $input = $("#my_message");
-        let message = $input.val().trim()
+        let input = $("#my_message").val().trim();
+        let message = {
+          'username': username,
+          'input': input
+        };
         if(e.which === ENTER_KEY && !e.shiftKey && message)
         {
             e.preventDefault();
             socket.emit('new message', message);
-            $input.val('');
+            $("#my_message").val('');
         }
     }
     $("#my_message").on('keydown', new_message.bind(this));
 
-    $('#send_button').on('click', function() {
-        let $message = $("#my_message")
-        if($message.val().trim() !== '')
+    $('#send').on('click', function() {
+        let input = $("#my_message").val().trim();
+        if(input !== '')
         {
-            socket.emit('new message', $message.val().trim());
-            $message.val('');
+            let message = {
+                'username': username,
+                'input': input
+            };
+            socket.emit('new message', message);
+            $("#my_message").val('');
         }
     })
-
 });

@@ -1,11 +1,43 @@
-<div class="received-chats">
-    <div class="received-img">
-        <img src="{{ message.author.gravatar }}">
-    </div>
-    <div class="received-msg">
-        <div class="received-msg-inbox">
-            <span class="time-received">{{ message.author.username }}  {{ moment(message.timestamp).format('lll') }}</span>
-            <p>{{ message.body }}</p>
+{#收到消息呈现在左边#}
+{% if message.author != current_user %}
+<div class="col-12">
+    <div class="col-md-5 received-message">
+        <div class="received-img">
+            <img class="profile-image" src="{{ message.author.gravatar }}">
+        </div>
+        <div class="received-msg">
+            <div class="received-msg-inbox">
+                    <span class="received-username">
+                      {{ message.author.username }}
+                    </span>
+                <p>{{ message.body }}</p>
+            </div>
         </div>
     </div>
+    <div class="received-time">
+        <span>{{ moment(message.timestamp).format('lll') }}</span>
+    </div>
 </div>
+
+{% else %}
+{#发出消息呈现在右边#}
+<div class="col-12">
+    <div class="col-md-5 outgoing-message">
+        <div class="outgoing-msg">
+            <div class="outgoing-msg-inbox">
+                    <span class="outgoing-username">
+                      {{ message.author.username }}
+                    </span>
+                <p>{{ message.body }}</p>
+            </div>
+        </div>
+        <div class="received-img">
+            <img class="profile-image" src="{{ message.author.gravatar }}">
+        </div>
+    </div>
+    <div class="received-time">
+        <span>{{ moment(message.timestamp).format('lll') }}</span>
+    </div>
+</div>
+
+{% endif %}

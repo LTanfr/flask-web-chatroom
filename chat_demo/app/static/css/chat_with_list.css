@@ -127,17 +127,16 @@ hr {
 }
 
 .chat-panel {
-    padding: 0 0 30px 0;
+    padding: 0;
     border-left: 1px solid #ccc;
 }
 
 .msg-inbox {
     overflow: hidden;
-    padding-bottom: 30px;
 }
 
 .msg-page {
-    height: 410px;
+    height: 470px;
     overflow-y: auto;
 }
 
@@ -167,7 +166,7 @@ hr {
 }
 
 .received-msg-inbox {
-    width: 100%;
+    width: 200px;
 }
 
 .received-msg-inbox p {
@@ -182,12 +181,59 @@ hr {
     max-width: 70%;
 }
 
-.time-received {
+.received-username {
     color: #777;
     display: block;
     font-size: 12px;
     margin: 8px 0 0 22px;
 }
+
+.received-time {
+  font-size:12px;
+  color:#777;
+  text-align:center;
+}
+
+.outgoing-message {
+  display: flex;
+  vertical-align: baseline;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right:20px;
+}
+
+.outgoing-msg {
+  display: inline-block;
+  vertical-align: top;
+  margin-right:15px;
+    margin-top: 8px;
+}
+
+.outgoing-msg-inbox {
+  width:200px;
+}
+
+.outgoing-username {
+    color: #777;
+    display: block;
+    font-size: 12px;
+    text-align:right;
+}
+
+.outgoing-msg-inbox p {
+  background: #74b9ff none repeat scroll 0 0;
+  border: 10px;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 5px 10px 5px 12px;
+  display: inline-block;
+  max-width: 80%;
+  float:right;
+  margin-top:3px;
+}
+
+
 
 .chat-box-tray {
     border-left: 1px solid #ccc;

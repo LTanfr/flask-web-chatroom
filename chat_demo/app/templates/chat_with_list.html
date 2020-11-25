@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block header %}
-        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css"/>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/chat_with_list.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.2/iconfont/material-icons.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/chat_with_list.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    {{ moment.include_moment(local_js=url_for('static', filename='js/moment-with-locales.min.js')) }}
+    {{ moment.locale('zh-cn') }}
+    <script type="text/javascript">
+        var messages_url = "{{ url_for('get_messages') }}"
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -11,7 +17,7 @@
     <div class="col-md-4">
       <div class="settings-tray">
         <img class="profile-image" src="{{ current_user.gravatar }}" alt="Profile img">
-        <h6>{{ current_user.username }}</h6>
+        <h6 id="username">{{ current_user.username }}</h6>
         <span class="settings-tray--right float-right">
           <i class="material-icons">cached</i>
           <i class="material-icons">power_settings_new</i>
@@ -73,23 +79,48 @@
       <div class="chat-panel">
         <div class="msg-inbox">
 
-          <div class="msg-page">
+          <div class="msg-page" id="messages">
 
-            <div class="col-12">
-              <div class="col-md-5 received-message">
-                <div class="received-img">
-                  <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt=" Friend image">
-                </div>
-                <div class="received-msg">
-                  <div class="received-msg-inbox">
-                    <span class="time-received">
-                      Robo Cop 2020-11-24 09:28:40
-                    </span>
-                    <p>Hello</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {% include 'messages.html' %}
+
+{#            <div class="col-12">#}
+{#              <div class="col-md-5 received-message">#}
+{#                <div class="received-img">#}
+{#                  <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt=" Friend image">#}
+{#                </div>#}
+{#                <div class="received-msg">#}
+{#                  <div class="received-msg-inbox">#}
+{#                    <span class="received-username">#}
+{#                      Robo Cop#}
+{#                    </span>#}
+{#                    <p>Hello</p>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="received-time">#}
+{#                <span>2020-11-24 09:28:40</span>#}
+{#              </div>#}
+{#            </div>#}
+
+
+{#            <div class="col-12">#}
+{#              <div class="col-md-5 outgoing-message">#}
+{#                <div class="outgoing-msg">#}
+{#                  <div class="outgoing-msg-inbox">#}
+{#                    <span class="outgoing-username">#}
+{#                      Robo Cop#}
+{#                    </span>#}
+{#                    <p>Hello,my friend，bala bala bala bala bala</p>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div class="received-img">#}
+{#                  <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt=" Friend image">#}
+{#                </div>#}
+{#              </div>#}
+{#              <div class="received-time">#}
+{#                <span>2020-11-24 09:28:40</span>#}
+{#              </div>#}
+{#            </div>#}
 
           </div>
 
@@ -100,8 +131,8 @@
         <div class="col-12">
           <div class="chat-box-tray">
             <i class="material-icons">sentiment_satisfied</i>
-            <input type="text" placeholder="Type your message here...">
-            <i class="material-icons">send</i>
+            <input id="my_message" type="text" placeholder="Type your message here...">
+            <i id="send" class="material-icons">send</i>
           </div>
         </div>
       </div>
