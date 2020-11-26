@@ -7,6 +7,7 @@ body {
 
 p {
     word-break:break-all;
+    word-wrap:break-word;
 }
 
 .container {
@@ -51,12 +52,24 @@ p {
     cursor: pointer;
 }
 
+.user-list {
+    overflow-y: auto;
+    height: 525px;
+}
+
 .friend-drawer {
-    padding: 10px 15px;
+    padding: 5px 20px;
     display: flex;
     vertical-align: baseline;
     background: #fff;
     transition: 0.3s ease;
+    align-items: center;
+}
+
+.friend-drawer img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 
 .friend-drawer .text {
@@ -64,23 +77,9 @@ p {
     width: 70%;
 }
 
-.friend-drawer h6 {
-    margin-top: 6px;
-    margin-bottom: 0;
-}
-
-.friend-drawer p {
-    margin: 0;
-}
-
-.friend-drawer p {
-    margin: 0;
-}
-
 .friend-drawer .time {
     color: grey;
 }
-
 
 .friend-drawer--onhover:hover {
     background: #74b9ff;
@@ -94,8 +93,8 @@ p {
 }
 
 hr {
-    margin: 5px auto;
-    width: 60%;
+    margin:auto;
+    width: 100%;
 }
 
 .chat-profile {

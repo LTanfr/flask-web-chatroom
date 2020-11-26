@@ -8,61 +8,72 @@
     {{ moment.locale('zh-cn') }}
     <script type="text/javascript">
         var messages_url = "{{ url_for('get_messages') }}"
+        var users_list_url = "{{ url_for('get_users') }}"
     </script>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <div class="settings-tray">
-        <img class="profile-image" src="{{ current_user.gravatar }}" alt="Profile img">
-        <h6 id="username">{{ current_user.username }}</h6>
-        <span class="settings-tray--right float-right">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-4" id="user-list">
+                <div class="settings-tray">
+                    <img class="profile-image" src="{{ current_user.gravatar }}" alt="Profile img">
+                    <h6 id="username">{{ current_user.username }}</h6>
+                    <span class="settings-tray--right float-right">
           <i class="material-icons">cached</i>
-          <i class="material-icons">power_settings_new</i>
+          <i class="material-icons" href="{{ url_for('logout') }}">power_settings_new</i>
         </span>
-      </div>
+                </div>
+                <div class="user-list">
+{#                    <div class="friend-drawer  friend-drawer--onhover">#}
+{#                        <img src="{{ current_user.gravatar }}" class="profile-image">#}
+{#                        <div class="text">#}
+{#                            <h6>{{ current_user.username }}</h6>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <hr>#}
+                </div>
 
-      <div class="friend-drawer  friend-drawer--onhover">
-        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">
-        <div class="text">
-          <h6>Robo Cop</h6>
-          <p>Hey, you're arrested!</p>
-        </div>
-        <span class="time small">13:21</span>
-      </div>
-      <hr>
 
-      <div class="friend-drawer  friend-drawer--onhover">
-        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">
-        <div class="text">
-          <h6>Robo Cop</h6>
-          <p>Hey, you're arrested!</p>
-        </div>
-        <span class="time small">13:21</span>
-      </div>
-      <hr>
-
-      <div class="friend-drawer  friend-drawer--onhover">
-        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">
-        <div class="text">
-          <h6>Robo Cop</h6>
-          <p>Hey, you're arrested!</p>
-        </div>
-        <span class="time small">13:21</span>
-      </div>
-      <hr>
-
-      <div class="friend-drawer  friend-drawer--onhover">
-        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">
-        <div class="text">
-          <h6>Robo Cop</h6>
-          <p>Hey, you're arrested!</p>
-        </div>
-        <span class="time small">13:21</span>
-      </div>
-      <hr>
+{#      <div class="friend-drawer  friend-drawer--onhover" id="user-list">#}
+{#        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">#}
+{#        <div class="text">#}
+{#          <h6>Robo Cop</h6>#}
+{#          <p>Hey, you're arrested!</p>#}
+{#        </div>#}
+{#        <span class="time small">13:21</span>#}
+{#      </div>#}
+{#      <hr>#}
+{##}
+{#      <div class="friend-drawer  friend-drawer--onhover">#}
+{#        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">#}
+{#        <div class="text">#}
+{#          <h6>Robo Cop</h6>#}
+{#          <p>Hey, you're arrested!</p>#}
+{#        </div>#}
+{#        <span class="time small">13:21</span>#}
+{#      </div>#}
+{#      <hr>#}
+{##}
+{#      <div class="friend-drawer  friend-drawer--onhover">#}
+{#        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">#}
+{#        <div class="text">#}
+{#          <h6>Robo Cop</h6>#}
+{#          <p>Hey, you're arrested!</p>#}
+{#        </div>#}
+{#        <span class="time small">13:21</span>#}
+{#      </div>#}
+{#      <hr>#}
+{##}
+{#      <div class="friend-drawer  friend-drawer--onhover">#}
+{#        <img src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="Friend photo" class="profile-image">#}
+{#        <div class="text">#}
+{#          <h6>Robo Cop</h6>#}
+{#          <p>Hey, you're arrested!</p>#}
+{#        </div>#}
+{#        <span class="time small">13:21</span>#}
+{#      </div>#}
+{#      <hr>#}
 
     </div>
 

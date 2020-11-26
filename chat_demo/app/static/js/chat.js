@@ -5,15 +5,23 @@ $(document).ready(function() {
     const ENTER_KEY = 13;
     const username = $("#username")[0].innerText;
 
+    $(window).bind('beforeunload', () => {
+        socket.emit('user leave', username);
+        socket.disconnect();
+    })
+
+    $('.user-list').load(users_list_url, () => {
+
+    });
+
     function scrollToBottom() {
         let $messages = $("#messages");
         $messages.scrollTop($messages[0].scrollHeight);
     }
 
-    $('#messages').load(messages_url, function (){
+    $('#messages').load(messages_url, () => {
         scrollToBottom();
     });
-
 
     var page = 1;
     function load_messages() {
@@ -53,8 +61,13 @@ $(document).ready(function() {
         scrollToBottom();
     })
 
-    socket.on('user count', function(data) {
-        $('#user-count').html(data.count)
+    socket.on('online users', (data) => {
+        const user_list = data.users_html
+        $('.user-list').html(user_list)
+    })
+
+    socket.on('connect', () => {
+        socket.emit('user in',username);
     })
 
     function new_message(e) {

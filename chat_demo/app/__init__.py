@@ -19,6 +19,4 @@ login.login_view = 'login'
 faker = Faker(['zh-CN'])
 moment = Moment(app)
 
-
 from app import routes, models, chat
-

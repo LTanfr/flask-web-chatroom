@@ -1,4 +1,5 @@
 from app import app, db
+from app.chat import online_users
 from flask import render_template, flash, redirect, url_for, request, current_app
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -16,6 +17,7 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash('用户名或密码错误。')
             return redirect(url_for('login'))
+
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('chat_with_list'))
     return render_template('login.html', title='登 录', form=form)
@@ -60,3 +62,9 @@ def get_messages():
         page, per_page=current_app.config['MESSAGE_PER_PAGE'])
     messages = pagination.items
     return render_template('messages.html', messages=messages[::-1])
+
+
+@app.route('/users')
+def get_users():
+    print(11111111111111111111111)
+    return render_template('users.html', users=online_users)
