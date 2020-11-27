@@ -2,7 +2,6 @@ from app import socketio, db
 from flask_socketio import emit
 from app.models import Message, User
 from flask import render_template
-from flask_login import current_user,logout_user
 
 online_users = []
 
@@ -35,7 +34,6 @@ def user_in(data):
 
 @socketio.on('user leave')
 def user_leave(data):
-    print(111111111111111111111)
     global online_users
     user = User.query.filter_by(username=data).first()
     if user in online_users:

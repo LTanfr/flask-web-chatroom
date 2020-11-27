@@ -30,14 +30,15 @@ def logout():
 
 
 @app.route('/chat_with_list', methods=['POST', 'GET'])
+@login_required
 def chat_with_list():
     return render_template('chat_with_list.html')
 
 
-@app.route('/chat', methods=['POST', 'GET'])
-@login_required
-def chat():
-    return render_template('chat.html')
+# @app.route('/chat', methods=['POST', 'GET'])
+# @login_required
+# def chat():
+#     return render_template('chat.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -66,5 +67,4 @@ def get_messages():
 
 @app.route('/users')
 def get_users():
-    print(11111111111111111111111)
     return render_template('users.html', users=online_users)
